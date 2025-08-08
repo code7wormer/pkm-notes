@@ -1,4 +1,5 @@
 import os
+import curses
 from datetime import datetime
 
 
@@ -21,5 +22,7 @@ def create_note():
         obj.write(f"{title}\n\nTags:{tags}\n\n")
         obj.writelines(notelst)
 
-if __name__=="__main__":
-    create_note()
+
+################################################################
+def open_note():
+    print("opened a note")

@@ -1,8 +1,7 @@
 import os
-import curses
 from datetime import datetime
-
-
+import shutil
+import time
 
 def create_note():
     notelst=[]
@@ -25,4 +24,26 @@ def create_note():
 
 ################################################################
 def open_note():
-    print("opened a note")
+    openmenu={}
+    notepath='notes'
+    for filename in os.listdir(notepath):
+        if filename.endswith('.md'):
+            file_path=os.path.join(notepath,filename)
+            with open(file_path,"r", encoding='utf-8') as f:
+                first_line = f.readline().strip()
+                if file_path not in openmenu.values():
+                    openmenu[first_line]=file_path
+    titlelist=list(openmenu.keys())
+    for i in range(1,len(titlelist)+1):\
+        print(i,f"-> {titlelist[i-1]}")
+    x = int(input("Enter file to open: "))
+    width = shutil.get_terminal_size().columns
+    with open(openmenu[titlelist[x-1]], "r", encoding='utf-8') as f:
+        print("\n",'#'*width,"\n")
+        content = f.read()
+        print(content)
+    print("\n", '#' * width, "\n")
+    y=input()
+
+
+

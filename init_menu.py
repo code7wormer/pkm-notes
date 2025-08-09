@@ -20,8 +20,8 @@ def init_menu(stdscr):
 
     while True:
         stdscr.erase()
+        stdscr.addstr(0,0,ascii_notes )
         ht,wdth=stdscr.getmaxyx()
-        stdscr.addstr(0, 0, ascii_notes)
 
         #drawing menu
 
@@ -51,7 +51,7 @@ def init_menu(stdscr):
             stdscr.clear()
             stdscr.refresh()
             curses.def_prog_mode()  # save curses state
-            curses.endwin()  # leave curses mode
+            curses.endwin()# leave curses mode
             funclist[current_row]()  # run your normal terminal function
             curses.reset_prog_mode()  # back to curses mode
             stdscr.refresh()
